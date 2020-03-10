@@ -16,6 +16,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        // If you want to have more users, you can start from here to save your User into the DB.*****
         // A Spring Security User is generated. Requires name, password, and what authorities that this user have.
         return new User("foo", "foo", new ArrayList<>());
     }

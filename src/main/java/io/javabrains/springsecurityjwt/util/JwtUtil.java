@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.function.Function;
 // Allows to create new JWT object
 // Lookup username in JWT
 // Lookup expireAt in JWT
+@Service
 public class JwtUtil {
     // You need to have a secret key for SHA 256 encryption.
     private String SECRET_KEY = "secret";
@@ -58,6 +60,11 @@ public class JwtUtil {
 
     public Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date()); // Check JWT expire date is before now.
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     // *****************************************************************************************************************
