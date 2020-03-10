@@ -15,6 +15,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Remember, this is just one of the way to create JWT in Spring Boot application.
+	// "Jwts" object is not there on the latest version of libs, have to set the versions manually**
+	implementation 'io.jsonwebtoken:jjwt:0.9.1' // Main thing, helps to create JWTs and validate them
+	implementation 'javax.xml.bind:jaxb-api:2.3.0' // This thing is required for JWT (Required for any developers who uses Java 9 and above)
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
